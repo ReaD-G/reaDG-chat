@@ -7,7 +7,7 @@ import { prisma } from './lib/db'
 export async function postData(formData: FormData) {
 	'use server'
 
-  const Pusher = require('pusher')
+	const Pusher = require('pusher')
 	const session = await getServerSession(authOptions)
 	const message = formData.get('message')
 
@@ -34,7 +34,7 @@ export async function postData(formData: FormData) {
 		useTLS: true,
 	})
 
-	pusher.trigger('chat', 'hello', {
+	await pusher.trigger('chat', 'hello', {
 		message: `${JSON.stringify(data)}\n\n`,
 	})
 }
